@@ -33,16 +33,6 @@ export default function App() {
         <Scripts />
         <LiveReload />
       </body>
-      <footer className="bg-white">
-        <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
-          <div className="mt-8 md:order-1 md:mt-0 mx-auto">
-            <p className="text-center text-base text-gray-400">
-              <Image src='https://pbs.twimg.com/profile_images/1543238248029474816/JoFE-jkP_400x400.jpg' className="inline-block h-10 w-10 rounded-full" />
-              {' '}Built with love by <a target={'_blank'} href='https://twitter.com/eyaltoledano' className="font-semibold text-gray-600">sh0</a> — Distributed with magic by the <a target={'_blank'} className="font-semibold text-gray-600" href='https://twitter.com/wizzyministry'>Ministry of Wizard Doodles</a>
-            </p>
-          </div>
-        </div>
-      </footer>
     </html>
   );
 }
