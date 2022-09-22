@@ -2,7 +2,6 @@ import { Form, useActionData } from "@remix-run/react";
 import { ActionFunction } from "@remix-run/node"; 
 import Image from "remix-image";
 import { DOODLES } from "./doodles.js"
-import { useState } from "react";
 
 export let action: ActionFunction = async ({request}) => {
   let formData = await request.formData();
@@ -11,12 +10,18 @@ export let action: ActionFunction = async ({request}) => {
   let ipfsHash = doodle.image.split('ipfs://')[1]
   let imgLink = `https://cloudflare-ipfs.com/ipfs/${ipfsHash}`
   doodle.image = imgLink
+
+  // merge images
+  const template = '../../public/assets/template.png'
+  const layers = [doodle.image, template].map(file => ({ input: file }))
+
+  // uhhhh
+
   return doodle
 }
 
 export default function Index() {
   const doodle = useActionData()
-  const [isHovering, setHover] = useState(false)
   const doodleButtonClasses = 'inline-flex relative justify-center items-center py-2 px-4 m-0 h-10 font-sans text-sm font-semibold text-center text-white normal-case align-middle bg-pink-400 rounded-lg border border-black border-solid appearance-none cursor-pointer select-none box-border hover:bg-pink-300 mt-4'
   const tweetButtonClasses = 'inline-flex relative justify-center items-center py-2 px-4 m-0 h-10 font-sans text-sm font-semibold text-center text-white normal-case align-middle bg-gray-400 rounded-lg border border-black border-solid appearance-none cursor-pointer select-none box-border hover:bg-blue-300 mt-4'
   return (
@@ -64,8 +69,8 @@ export default function Index() {
           <div className="col-span-2">
             <div className="mx-auto px-4">
               <div className="overflow-hidden bg-white shadow-lg sm:rounded-lg">
-                <div className="px-4 py-5 sm:p-6" onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
-                  <img src={doodle?.image ? doodle?.image : 'https://i.postimg.cc/C1PDYrYf/poopie.png'} className="w-full rounded-lg" />
+                <div className="px-4 py-5 sm:p-6">
+                  <img id='output' src={doodle?.image ? doodle?.image : 'https://i.postimg.cc/C1PDYrYf/poopie.png'} className="w-full rounded-lg" />
                 </div>
               </div>
             </div>
