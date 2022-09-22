@@ -4,21 +4,25 @@ import Image from "remix-image";
 import { DOODLES } from "./doodles.js"
 
 export let action: ActionFunction = async ({request}) => {
+  
   let formData = await request.formData();
   let doodleId = formData.get('doodle-id')
-  let doodle = DOODLES[doodleId]
-  let ipfsHash = doodle.image.split('ipfs://')[1]
-  let imgLink = `https://cloudflare-ipfs.com/ipfs/${ipfsHash}`
-  doodle.image = imgLink
-  doodle.id = doodle.name.split('#')[1]
-
-  // merge images
-  const template = '../../public/assets/template.png'
-  const layers = [doodle.image, template].map(file => ({ input: file }))
-
-  // uhhhh
-
-  return doodle
+  if (doodleId) {
+    let doodle = DOODLES[doodleId]
+    let ipfsHash = doodle.image.split('ipfs://')[1]
+    let imgLink = `https://cloudflare-ipfs.com/ipfs/${ipfsHash}`
+    doodle.image = imgLink
+    doodle.id = doodle.name.split('#')[1]
+  
+    // merge images
+    const template = '../../public/assets/template.png'
+    const layers = [doodle.image, template].map(file => ({ input: file }))
+  
+    // uhhhh
+  
+    return doodle
+  }
+  return null
 }
 
 export default function Index() {
@@ -56,10 +60,20 @@ export default function Index() {
           </div>
         </div>
 
-        <div className="grid grid-rows-1 grid-cols-6 gap-8 items-center px-4">
-          <div className="col-span-1">
-            <div className="rounded-lg border-2 border-gray-900  overflow-hidden">
-                <img src="https://i.postimg.cc/C1PDYrYf/poopie.png" className="w-full" />
+        <div className={`sm:hidden`}>
+          <div className="mx-auto px-4">
+            <div className="overflow-hidden bg-white shadow-lg sm:rounded-lg">
+              <div className="px-4 py-5 sm:p-6">
+                <img id='output' src={doodle?.image ? doodle?.image : 'https://i.postimg.cc/C1PDYrYf/poopie.png'} className="w-full rounded-lg" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid-rows-1 lg:grid-cols-6 grid-cols-4 gap-8 items-center px-4 hidden sm:grid">
+          <div className="lg:col-span-1 hidden lg:flex">
+            <div className="rounded-lg border-2 border-gray-900 xl:block overflow-hidden">
+              <img src="https://i.postimg.cc/C1PDYrYf/poopie.png" className="w-full" />
             </div>
           </div>
           <div className="col-span-1">
@@ -81,7 +95,7 @@ export default function Index() {
               <img src="https://i.postimg.cc/Y0dd5zDX/bt.png" className="w-full" />
             </div>
           </div>
-          <div className="col-span-1">
+          <div className="lg:col-span-1 hidden lg:flex">
             <div className="rounded-lg border-2 border-gray-900 xl:block overflow-hidden">
               <img src="https://i.postimg.cc/R0vntxZH/jlian.png" className="w-full" />
             </div>
@@ -94,12 +108,13 @@ export default function Index() {
         </div>
       </section>
 
-      <section className="bg-white fixed bottom-0 text-center">
-        <div className="mx-auto max-w-7xl py-4 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
-          <div className="mt-8 md:order-1 md:mt-0 mx-auto">
+      <section className="bg-white text-center w-full">
+        <div className="mx-auto max-w-7xl my-2 sm:my-4 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
+          <div className="sm:mt-8 md:order-1 md:mt-0 mx-auto">
             <div className="text-center text-base text-gray-400">
               <Image src='https://pbs.twimg.com/profile_images/1543238248029474816/JoFE-jkP_400x400.jpg' className="inline-block h-10 w-10 rounded-full" />
-              <span> Built with love by <a target={'_blank'} href='https://twitter.com/eyaltoledano' className="font-semibold text-gray-600">sh0</a> — Distributed with magic by the <a target={'_blank'} className="font-semibold text-gray-600" href='https://twitter.com/wizzyministry'>Ministry of Wizard Doodles</a></span>
+              <div>Built with love by <a target={'_blank'} href='https://twitter.com/eyaltoledano' className="font-semibold text-gray-600">sh0</a></div>
+              <div>Distributed with magic by the <a target={'_blank'} className="font-semibold text-gray-600" href='https://twitter.com/wizzyministry'>Ministry of Wizard Doodles</a></div>
             </div>
           </div>
         </div>

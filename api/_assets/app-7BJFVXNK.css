@@ -1029,10 +1029,6 @@ video {
     display: flex;
   }
 
-  .md\:hidden {
-    display: none;
-  }
-
   .md\:items-center {
     align-items: center;
   }

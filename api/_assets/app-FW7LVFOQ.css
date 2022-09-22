@@ -1029,10 +1029,6 @@ video {
     display: flex;
   }
 
-  .md\:hidden {
-    display: none;
-  }
-
   .md\:items-center {
     align-items: center;
   }
@@ -1053,10 +1049,6 @@ video {
 
   .lg\:col-span-1 {
     grid-column: span 1 / span 1;
-  }
-
-  .lg\:flex {
-    display: flex;
   }
 
   .lg\:grid-cols-6 {

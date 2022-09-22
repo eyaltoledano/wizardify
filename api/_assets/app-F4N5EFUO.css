@@ -964,10 +964,6 @@ video {
 }
 
 @media (min-width: 640px) {
-  .sm\:visible {
-    visibility: visible;
-  }
-
   .sm\:my-4 {
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -1029,10 +1025,6 @@ video {
     display: flex;
   }
 
-  .md\:hidden {
-    display: none;
-  }
-
   .md\:items-center {
     align-items: center;
   }
@@ -1053,10 +1045,6 @@ video {
 
   .lg\:col-span-1 {
     grid-column: span 1 / span 1;
-  }
-
-  .lg\:flex {
-    display: flex;
   }
 
   .lg\:grid-cols-6 {
