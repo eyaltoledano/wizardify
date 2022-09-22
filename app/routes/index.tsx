@@ -10,6 +10,7 @@ export let action: ActionFunction = async ({request}) => {
   let ipfsHash = doodle.image.split('ipfs://')[1]
   let imgLink = `https://cloudflare-ipfs.com/ipfs/${ipfsHash}`
   doodle.image = imgLink
+  doodle.id = doodle.name.split('#')[1]
 
   // merge images
   const template = '../../public/assets/template.png'
@@ -88,7 +89,7 @@ export default function Index() {
         </div>
 
         <div className={doodle?.image ? 'flex flex-row px-12 pt-4 justify-center align-middle' : 'invisible'}>
-          <button className={doodleButtonClasses + ' mr-4 w-1/5'} id='download'>Download</button>
+          <button className={doodleButtonClasses + ' mr-4 w-1/5'} id='download'><a target={"_blank"} href={doodle?.image ? doodle?.image : '#'} download={`${doodle?.id}.png`}>Download</a></button>
           <button className={tweetButtonClasses + ' w-1/5'}><a href='#' target={'_blank'}>Tweet</a></button>
         </div>
       </section>
