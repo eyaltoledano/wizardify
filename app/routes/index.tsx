@@ -2,6 +2,10 @@ import { Form, useActionData } from "@remix-run/react";
 import { ActionFunction } from "@remix-run/node"; 
 import Image from "remix-image";
 import { DOODLES } from "./doodles.js"
+import imageTemplate from '../../public/assets/template.png'
+import wizzyMinistryLogo from '../../public/assets/wizzyministry.jpeg'
+import sh0 from '../../public/assets/sh0.jpg'
+import alex from '../../public/assets/alex.jpg'
 
 export let action: ActionFunction = async ({request}) => {
   
@@ -15,8 +19,7 @@ export let action: ActionFunction = async ({request}) => {
     doodle.id = doodle.name.split('#')[1]
   
     // merge images
-    const template = '../../public/assets/template.png'
-    const layers = [doodle.image, template].map(file => ({ input: file }))
+    const layers = [doodle.image, imageTemplate].map(file => ({ input: file }))
   
     // uhhhh
   
@@ -31,11 +34,12 @@ export default function Index() {
   const tweetButtonClasses = 'inline-flex relative justify-center items-center py-2 px-4 m-0 h-10 font-sans text-sm font-semibold text-center text-white normal-case align-middle bg-gray-400 rounded-lg border border-black border-solid appearance-none cursor-pointer select-none box-border hover:bg-blue-300 mt-4'
   return (
     <div>
-      <section className="w-full h-auto overflow-hidden relative bg-white pb-4">
+      <section className="w-full h-auto overflow-hidden relative bg-white">
         <div className="max-w-7xl mx-auto pt-6 md:pt-8 flex items-center lg:px-0 px-10 justify-center flex-col">
           <p className="font-bold uppercase text-gray-600 tracking-wide text-md py-4"><a href="https://triwizzy.xyz/proposal" target="_blank">IN CELEBRATION OF THE TRIWIZZY TOURNAMENT</a></p>
-          <h1 className="text-5xl sm:text-6xl font-black drop-shadow-md uppercase text-center">
-            <span className="bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-red-500 text-transparent">Wizzy up for Fall 🧙‍♂️</span>
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black drop-shadow-md uppercase text-center">
+            <span className="bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-red-500 text-transparent">Wizzy up for Fall 🧙‍♂️
+            <br/>cloaks &amp; scarves for all ✨</span>
           </h1>
           <div className="text-gray-700 font-medium mb-4 text-center mt-5">Keep your Doodle warm with a Triwizzy cloak &amp; scarf
             <Form method="post">
@@ -85,7 +89,7 @@ export default function Index() {
             <div className="mx-auto px-4">
               <div className="overflow-hidden bg-white shadow-lg sm:rounded-lg">
                 <div className="px-4 py-5 sm:p-6">
-                  <img id='output' src={doodle?.image ? doodle?.image : 'https://i.postimg.cc/C1PDYrYf/poopie.png'} className="w-full rounded-lg" />
+                  <img id='output' src={doodle?.image ? doodle?.image : alex} className="w-full rounded-lg" />
                 </div>
               </div>
             </div>
@@ -111,10 +115,9 @@ export default function Index() {
       <section className="bg-white text-center w-full">
         <div className="mx-auto max-w-7xl my-2 sm:my-4 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
           <div className="sm:mt-8 md:order-1 md:mt-0 mx-auto">
-            <div className="text-center text-base text-gray-400">
-              <Image src='https://pbs.twimg.com/profile_images/1543238248029474816/JoFE-jkP_400x400.jpg' className="inline-block h-10 w-10 rounded-full" />
-              <div>Built with love by <a target={'_blank'} href='https://twitter.com/eyaltoledano' className="font-semibold text-gray-600">sh0</a></div>
-              <div>Distributed with magic by the <a target={'_blank'} className="font-semibold text-gray-600" href='https://twitter.com/wizzyministry'>Ministry of Wizard Doodles</a></div>
+            <div className="text-center text-xs md:text-sm text-gray-400">
+              <div>Built with love by <a target={'_blank'} href='https://twitter.com/eyaltoledano' className="font-semibold text-gray-600">sh0 <Image src={sh0} className="inline-block h-8 w-8 rounded-full" /></a></div>
+              <div>Distributed with magic by the <a target={'_blank'} className="font-semibold text-gray-600" href='https://twitter.com/wizzyministry'>Ministry of Wizard Doodles <Image src={wizzyMinistryLogo} className="inline-block h-8 w-8 rounded-full" /></a></div>
             </div>
           </div>
         </div>
