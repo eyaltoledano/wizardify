@@ -597,14 +597,6 @@ video {
   border-width: 0;
 }
 
-.invisible {
-  visibility: hidden;
-}
-
-.fixed {
-  position: fixed;
-}
-
 .absolute {
   position: absolute;
 }
@@ -1342,10 +1334,6 @@ video {
 
 .pb-12 {
   padding-bottom: 3rem;
-}
-
-.pb-4 {
-  padding-bottom: 1rem;
 }
 
 .text-left {
