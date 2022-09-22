@@ -30,7 +30,7 @@ export default function Index() {
           <div className="text-gray-700 font-medium mb-4 text-center mt-5">Keep your Doodle warm with a Triwizzy cloak &amp; scarf
             <Form method="post">
               <div className="flex items-center">
-                <div className="mt-4 flex-1 mr-4">
+                <div className="mt-4 flex-1">
                   <div className="mt-1">
                     
                       <input
