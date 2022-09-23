@@ -4,7 +4,11 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "pukenza": "url('https://cloudflare-ipfs.com/ipfs/QmXtzEj3TwqKLdevj5XMbCZmkgQgi8NqvzzkEhqpN1MrtX')",
+      }
+    },
   },
   plugins: [],
 }
