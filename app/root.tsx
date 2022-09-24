@@ -21,7 +21,7 @@ export const meta: MetaFunction = () => {
     title: "Wizzy up your Doodle!",
     viewport: "width=device-width,initial-scale=1",
     description,
-    "twitter:image": "https://remix-jokes.lol/social.png",
+    "twitter:image": "https://wvvmijmjchpqjqiwewxy.supabase.co/storage/v1/object/public/general/wizzyup",
     "twitter:card": "summary_large_image",
     "twitter:creator": "@eyaltoledano",
     "twitter:site": "@wizzyministry",
