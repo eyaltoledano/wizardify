@@ -2,11 +2,9 @@ import { Form, useActionData } from "@remix-run/react";
 import { ActionFunction } from "@remix-run/node"; 
 import Image from "remix-image";
 import { DOODLES } from "./doodles.js"
-import imageTemplate from '../../public/assets/template.png'
 import wizzyMinistryLogo from '../../public/assets/wizzyministry.jpeg'
 import sh0 from '../../public/assets/sh0.jpg'
 import alex from '../../public/assets/alex.jpg'
-import mergeImages from 'merge-images';
 
 export let action: ActionFunction = async ({request}) => {
   
@@ -14,19 +12,9 @@ export let action: ActionFunction = async ({request}) => {
   let doodleId = formData.get('doodle-id')
   if (doodleId) {
     let doodle = DOODLES[doodleId]
-    let ipfsHash = doodle.image.split('ipfs://')[1]
-    let imgLink = `https://cloudflare-ipfs.com/ipfs/${ipfsHash}`
-    doodle.image = imgLink
     doodle.id = doodle.name.split('#')[1]
-  
-    // merge images
-    const layers = [doodle.image, imageTemplate]
-  
-    // uhhhh
-    if (typeof window !== "undefined") {
-      // await mergeImages(layers).then(b64 => document?.querySelector('#output').src = b64);
-    }
-  
+    let imagePath = `https://wvvmijmjchpqjqiwewxy.supabase.co/storage/v1/object/public/triwizzy-pfps/${doodle.id}.png`
+    doodle.image = imagePath
     return doodle
   }
   return null
@@ -57,6 +45,8 @@ export default function Index() {
                           type="number"
                           name="doodle-id"
                           placeholder="Type in your Doodle ID #"
+                          max={9999}
+                          min={0}
                           className="block w-full rounded-md border-gray-200 border py-3 px-4 shadow-md focus:border-pink-500 focus:ring-pink-500 text-md font-semibold"
                         />
                     </div>
@@ -115,7 +105,7 @@ export default function Index() {
 
           <div className={doodle?.image ? 'flex flex-row px-12 pt-4 pb-8 justify-center align-middle' : 'invisible'}>
             <button className={doodleButtonClasses + ' mr-4 w-1/5'} id='download'><a target={"_blank"} href={doodle?.image ? doodle?.image : '#'} download={`${doodle?.id}.png`}>Download</a></button>
-            <button className={tweetButtonClasses + ' w-1/5'}><a href='#' target={'_blank'}>Tweet</a></button>
+            <button className={tweetButtonClasses + ' w-1/5'}><a href={`https://twitter.com/intent/tweet?text=Doodle%20%23${doodle?.id ? doodle?.id : ''}%20is%20Triwizzy%20certified%21%20%F0%9F%8F%86%E2%9C%A8%0D%0A%0D%0AThanks%20%40WizzyMinistry%20for%20the%20%40WizzyTournament%20cloak%20%26%20scarf%20%F0%9F%A7%99%E2%80%8D%E2%99%82%EF%B8%8F%F0%9F%A7%A3%0D%0A%0D%0AWizzy%20up%20your%20own%20Doodle%20at%20triwizzy.xyz`} target={'_blank'}>Tweet</a></button>
           </div>
         </div>
       </section>
