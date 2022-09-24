@@ -16,7 +16,7 @@ export function links() {
 
 export const meta: MetaFunction = () => {
   const description = `The wizzies have released a handy tool to help warm your Doodles and celebrate in the elements! Right click and save your Triwizzy Doodle today, compliments of the Ministry of Wizard Doodles.`
-  const image = "https://wvvmijmjchpqjqiwewxy.supabase.co/storage/v1/object/public/general/wizzyup",
+  const image = "https://wvvmijmjchpqjqiwewxy.supabase.co/storage/v1/object/public/general/wizzyup"
   return {
     charset: "utf-8",
     title: "Wizzy up your Doodle!",
