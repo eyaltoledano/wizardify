@@ -5,15 +5,23 @@ import { DOODLES } from "./doodles.js"
 import wizzyMinistryLogo from '../../public/assets/wizzyministry.jpeg'
 import sh0 from '../../public/assets/sh0.jpg'
 import alex from '../../public/assets/alex.jpg'
+import Toggle from '../components/toggle'
+import { useState } from 'react'
 
 export let action: ActionFunction = async ({request}) => {
   
   let formData = await request.formData();
   let doodleId = formData.get('doodle-id')
+  let fren = formData.get('fren')
   if (doodleId) {
     let doodle = DOODLES[doodleId]
     doodle.id = doodle.name.split('#')[1]
-    let imagePath = `https://wvvmijmjchpqjqiwewxy.supabase.co/storage/v1/object/public/triwizzy-pfps/${doodle.id}.png`
+    let basePath = 'https://wvvmijmjchpqjqiwewxy.supabase.co/storage/v1/object/public/triwizzy-pfps'
+    let imagePath = `${basePath}/${doodle.id}.png`
+    console.log(fren)
+    if (fren == 'birb') { imagePath = `${basePath}/birb/${doodle.id}-birb.png` }
+    // if (fren == 'snek') { imagePath = `${basePath}/${doodle.id}-snek.png` }
+    // if (fren == 'snel') { imagePath = `${basePath}/${doodle.id}-snel.png` }
     doodle.image = imagePath
     return doodle
   }
@@ -21,9 +29,13 @@ export let action: ActionFunction = async ({request}) => {
 }
 
 export default function Index() {
+  const [fren, setFren] = useState('')
   const doodle = useActionData()
-  const doodleButtonClasses = 'inline-flex relative justify-center items-center py-2 px-4 m-0 h-10 font-sans text-sm font-semibold text-center text-white normal-case align-middle bg-pink-400 rounded-lg border border-black border-solid appearance-none cursor-pointer select-none box-border hover:bg-pink-300 mt-4'
-  const tweetButtonClasses = 'inline-flex relative justify-center items-center py-2 px-4 m-0 h-10 font-sans text-sm font-semibold text-center text-white normal-case align-middle bg-gray-400 rounded-lg border border-black border-solid appearance-none cursor-pointer select-none box-border hover:bg-blue-300 mt-4'
+  const doodleButtonClasses = 'inline-flex relative justify-center items-center py-2 px-4 m-0 h-10 font-sans text-sm font-semibold text-center text-white normal-case align-middle bg-pink-400 rounded-lg border border-black border-solid appearance-none cursor-pointer select-none box-border hover:bg-pink-300 mt-4 transition-colors duration-200 ease-in-out'
+  const tweetButtonClasses = 'inline-flex relative justify-center items-center py-2 px-4 m-0 h-10 font-sans text-sm font-semibold text-center text-white normal-case align-middle bg-gray-400 rounded-lg border border-black border-solid appearance-none cursor-pointer select-none box-border hover:bg-blue-300 mt-4 transition-colors duration-200 ease-in-out'
+
+  const birbClasses = doodleButtonClasses
+  const noBirbClasses = 'inline-flex relative justify-center items-center py-2 px-4 m-0 h-10 font-sans text-sm font-semibold text-center text-white normal-case align-middle bg-gray-400 rounded-lg border border-black border-solid appearance-none cursor-pointer select-none box-border hover:bg-gray-300 mt-4 transition-colors duration-200 ease-in-out'
 
   return (
     <div className="subpixel-antialiased">
@@ -55,6 +67,16 @@ export default function Index() {
                   <div className="pl-2">
                     <button type='submit' className={doodleButtonClasses}>Wizzy up!</button>
                   </div>
+                </div>
+                <div>
+                  <h4 className="text-gray-700 font-semibold mb-1 text-center mt-5 uppercase">Choose a fren</h4>
+                </div>
+                <div className="grid grid-rows-1 grid-cols-4 gap-4 items-center">
+                    <input type={'text'} className='hidden' value={fren} name={'fren'} readOnly/>
+                    <div className={`col-span-1 w-full ${fren == '' ? birbClasses : noBirbClasses}`} onClick={() => setFren('')}>no fren</div>
+                    <div className={`col-span-1 w-full ${fren == 'birb' ? birbClasses : noBirbClasses}`} onClick={() => setFren('birb')}>birb</div>
+                    <div className={`col-span-1 w-full ${fren == 'snek' ? birbClasses : noBirbClasses}`} onClick={() => setFren('snek')}>{fren == 'snek' ? 'soon' : 'snek'}</div>
+                    <div className={`col-span-1 w-full ${fren == 'snel' ? birbClasses : noBirbClasses}`} onClick={() => setFren('snel')}>{fren == 'snel' ? 'soon' : 'snel'}</div>
                 </div>
               </Form>
             </div>
