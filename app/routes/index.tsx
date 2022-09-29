@@ -126,8 +126,8 @@ export default function Index() {
           </div>
 
           <div className={doodle?.image ? 'flex flex-row px-12 pt-4 pb-8 justify-center align-middle' : 'invisible'}>
-            <button className={doodleButtonClasses + ' mr-4 w-1/5'} id='download'><a target={"_blank"} href={doodle?.image ? doodle?.image : '#'} download={`${doodle?.id}.png`}>Download</a></button>
-            <button className={tweetButtonClasses + ' w-1/5'}><a href={`https://twitter.com/intent/tweet?text=Doodle%20%23${doodle?.id ? doodle?.id : ''}%20is%20Triwizzy%20certified%21%20%F0%9F%8F%86%E2%9C%A8%0D%0A%0D%0AThanks%20%40WizzyMinistry%20for%20the%20%40WizzyTournament%20cloak%20%26%20scarf%20%F0%9F%A7%99%E2%80%8D%E2%99%82%EF%B8%8F%F0%9F%A7%A3%0D%0A%0D%0AWizzy%20up%20your%20%40doodles%20at%20wizzyup.xyz`} target={'_blank'}>Tweet</a></button>
+            <button className={doodleButtonClasses + ' mr-4 w-2/5'} id='download'><a target={"_blank"} href={doodle?.image ? doodle?.image : '#'} download={`${doodle?.id}.png`}>Download</a></button>
+            <button className={tweetButtonClasses + ' w-2/5'}><a href={`https://twitter.com/intent/tweet?text=Doodle%20%23${doodle?.id ? doodle?.id : ''}%20is%20Triwizzy%20certified%21%20%F0%9F%8F%86%E2%9C%A8%0D%0A%0D%0AThanks%20%40WizzyMinistry%20for%20the%20%40WizzyTournament%20cloak%20%26%20scarf%20%F0%9F%A7%99%E2%80%8D%E2%99%82%EF%B8%8F%F0%9F%A7%A3%0D%0A%0D%0AWizzy%20up%20your%20%40doodles%20at%20wizzyup.xyz`} target={'_blank'}>Tweet</a></button>
           </div>
         </div>
       </section>
