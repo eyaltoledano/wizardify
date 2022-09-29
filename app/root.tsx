@@ -24,7 +24,6 @@ export const meta: MetaFunction = () => {
     "og:description": description,
     "og:image": image,
     "twitter:image": image,
-    "twitter:card": "summary_large_image",
     "twitter:creator": "@eyaltoledano",
     "twitter:site": "@wizzyministry",
     "twitter:title": "Wizzy up your Doodle!",

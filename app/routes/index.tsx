@@ -20,8 +20,8 @@ export let action: ActionFunction = async ({request}) => {
     let imagePath = `${basePath}/${doodle.id}.png`
     console.log(fren)
     if (fren == 'birb') { imagePath = `${basePath}/birb/${doodle.id}-birb.png` }
-    // if (fren == 'snek') { imagePath = `${basePath}/${doodle.id}-snek.png` }
-    // if (fren == 'snel') { imagePath = `${basePath}/${doodle.id}-snel.png` }
+    if (fren == 'snek') { imagePath = `${basePath}/snek/${doodle.id}-snek.png` }
+    if (fren == 'snel') { imagePath = `${basePath}/snel/${doodle.id}-snel.png` }
     doodle.image = imagePath
     return doodle
   }
@@ -75,8 +75,8 @@ export default function Index() {
                     <input type={'text'} className='hidden' value={fren} name={'fren'} readOnly/>
                     <div className={`col-span-1 w-full ${fren == '' ? birbClasses : noBirbClasses}`} onClick={() => setFren('')}>no fren</div>
                     <div className={`col-span-1 w-full ${fren == 'birb' ? birbClasses : noBirbClasses}`} onClick={() => setFren('birb')}>birb</div>
-                    <div className={`col-span-1 w-full ${fren == 'snek' ? birbClasses : noBirbClasses}`} onClick={() => setFren('snek')}>{fren == 'snek' ? 'soon' : 'snek'}</div>
-                    <div className={`col-span-1 w-full ${fren == 'snel' ? birbClasses : noBirbClasses}`} onClick={() => setFren('snel')}>{fren == 'snel' ? 'soon' : 'snel'}</div>
+                    <div className={`col-span-1 w-full ${fren == 'snek' ? birbClasses : noBirbClasses}`} onClick={() => setFren('snek')}>snek</div>
+                    <div className={`col-span-1 w-full ${fren == 'snel' ? birbClasses : noBirbClasses}`} onClick={() => setFren('snel')}>snel</div>
                 </div>
               </Form>
             </div>
@@ -136,8 +136,9 @@ export default function Index() {
         <div className="mx-auto max-w-7xl my-2 sm:my-4 px-4 sm:px-6 md:flex md:items-center md:justify-between lg:px-8">
           <div className="sm:mt-8 md:order-1 md:mt-0 mx-auto">
             <div className="text-center text-xs md:text-sm text-gray-400">
-              <div>Built with love by <a target={'_blank'} href='https://twitter.com/eyaltoledano' className="font-semibold text-gray-600">sh0 <Image src={sh0} className="inline-block h-8 w-8 rounded-full" /></a></div>
-              <div>Distributed with magic by the <a target={'_blank'} className="font-semibold text-gray-600" href='https://twitter.com/wizzyministry'>Ministry of Wizard Doodles <Image src={wizzyMinistryLogo} className="inline-block h-8 w-8 rounded-full" /></a></div>
+              <span>Built with love by <a target={'_blank'} href='https://twitter.com/eyaltoledano' className="font-semibold text-gray-600">sh0 <Image src={sh0} className="inline-block h-8 w-8 rounded-full" /></a></span>
+              <span className="ml-1">Distributed with magic by <a target={'_blank'} className="font-semibold text-gray-600" href='https://twitter.com/wizzyministry'>@WizzyMinistry <Image src={wizzyMinistryLogo} className="inline-block h-8 w-8 rounded-full" /></a></span>
+              <span className="ml-1">snek &amp; snel design by <a target={'_blank'} className="font-semibold text-gray-600" href='https://twitter.com/iamcyclo'>cyclo <Image src={'https://pbs.twimg.com/profile_images/1504251193324826624/LIucNlS7_400x400.png'} className="inline-block h-8 w-8 rounded-full" /></a></span>
             </div>
           </div>
         </div>

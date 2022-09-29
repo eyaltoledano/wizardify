@@ -896,11 +896,6 @@ video {
   background-color: rgb(253 242 248 / var(--tw-bg-opacity));
 }
 
-.bg-gray-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
-}
-
 .bg-pukenza {
   background-image: url('https://cloudflare-ipfs.com/ipfs/QmXtzEj3TwqKLdevj5XMbCZmkgQgi8NqvzzkEhqpN1MrtX');
 }
@@ -1197,11 +1192,6 @@ video {
 .hover\:bg-gray-300:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-gray-200:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 
 .focus\:border-pink-500:focus {
